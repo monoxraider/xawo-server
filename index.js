@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 
 const { igdl, twitter, youtube, fbdown, ttdl } = require("btch-downloader");
 var tkdl = require("@sasmeee/tkdl");
+var tiktod = require("tiktod");
 const { YTDL } = require("ytdl-easy");
 
 const app = express();
@@ -32,21 +33,22 @@ app.get("/instagram-downloader", async (req, res) => {
 });
 
 app.get("/instagram-image-downloader", async (req, res) => {
-    const inputValue = req.query.input;
-    const instagramURL = inputValue;
-  
-    const data = await igdl(instagramURL);
-    console.log(data);
-    res.json(data);
-  });
+  const inputValue = req.query.input;
+  const instagramURL = inputValue;
+
+  const data = await igdl(instagramURL);
+  console.log(data);
+  res.json(data);
+});
 
 app.get("/tiktok-downloader", async (req, res) => {
   const inputValue = req.query.input;
   const tiktokURL = inputValue;
 
-  const data = await ttdl(tiktokURL);
-  console.log(data);
-  res.json(data);
+  tiktod.download(tiktokURL).then((data) => {
+    console.log(data);
+    res.json(data);
+  });
 });
 
 app.get("/twitter-downloader", async (req, res) => {
