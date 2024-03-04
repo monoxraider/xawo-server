@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-const { igdl, twitter, youtube, fbdown } = require("btch-downloader");
+const { igdl, twitter, youtube, fbdown, ttdl } = require("btch-downloader");
 var tkdl = require("@sasmeee/tkdl");
 const { YTDL } = require("ytdl-easy");
 
@@ -44,7 +44,7 @@ app.get("/tiktok-downloader", async (req, res) => {
   const inputValue = req.query.input;
   const tiktokURL = inputValue;
 
-  const data = await tkdl(tiktokURL);
+  const data = await ttdl(tiktokURL);
   console.log(data);
   res.json(data);
 });
